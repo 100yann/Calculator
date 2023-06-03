@@ -25,9 +25,17 @@ dark_or_light = ctk.CTkSwitch(app,
                               onvalue='on',
                               offvalue='off',
                               )
-dark_or_light.grid(row=0, column=1)
+dark_or_light.pack()
 
 
+# canvas for the calculator buttons and entry
+frame = ctk.CTkFrame(app, width=350, height=500)
+frame.pack()
+
+# create entry
+num = ctk.CTkEntry(frame, width=300, height=100, font=('Arial', 40), placeholder_text=0, justify='right')
+app.after(1, lambda: num.focus())
+num.grid(row=0, column=0, columnspan=1)
 
 
 
