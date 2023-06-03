@@ -1,5 +1,5 @@
 import customtkinter as ctk
-
+from buttons import Buttons
 
 # init the GUI
 app = ctk.CTk()
@@ -36,6 +36,13 @@ frame.pack()
 num = ctk.CTkEntry(frame, width=300, height=100, font=('Arial', 40), placeholder_text=0, justify='right')
 app.after(1, lambda: num.focus())
 num.grid(row=0, column=0, columnspan=1)
+
+multiply_button = Buttons(frame, 'x', "pass", row=1, column=1)
+divide_button = Buttons(frame, '÷', "pass", row=2, column=1)
+minus_button = Buttons(frame, '-', 'pass', row=3, column=1)
+plus_button = Buttons(frame, '+', "pass", row=4, column=1)
+equals_button = Buttons(frame, '=', "pass", row=5, column=1)
+
 
 
 
