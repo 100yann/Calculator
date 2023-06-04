@@ -10,4 +10,4 @@ class Buttons:
                                     font=('Arial', 25),
                                     corner_radius=5
                                     )
-        self.button.grid(row=row, column=column, padx=5, pady=0.5)
+        self.button.grid(row=row, column=column, padx=0, pady=0)
