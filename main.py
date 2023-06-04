@@ -3,6 +3,8 @@ from buttons import Buttons
 from tkinter import *
 
 
+expression = ''
+LARGE_FONT=('Arial', 45)
 NUMBERS = [
     [4, 2], 
     [3, 1], [3, 2], [3, 3],
@@ -39,16 +41,26 @@ dark_or_light = ctk.CTkSwitch(app,
 dark_or_light.pack()
 
 
+# label to display current expression
+main_display = ctk.CTkLabel(app, 
+                            width=250, height=125, 
+                            text='0', 
+                            anchor='se',
+                            font=LARGE_FONT)
+main_display.pack(pady=15)
+
 # canvas for the calculator buttons
 frame = ctk.CTkFrame(app, width=350, height=600)
 frame.pack()
 
 
-expression = ''
+
 def getNum(num):
+    main_display.configure(text='')
     global expression
     expression += str(num)
     print(expression)
+    main_display.configure(text=expression)
 
 
 multiply_button = Buttons(frame, '*', lambda: calculate(entry_num.get(), '*'), row=0, column=4)
