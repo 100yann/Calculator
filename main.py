@@ -77,13 +77,19 @@ def equals():
     result = round(result, 12)
     main_display.configure(text=result)
 
+def clearAll():
+    clearDisplay()
+    global total_expression, display_expression
+    total_expression = ''
+    display_expression = ''
+    main_display.configure(text=0)
 
 multiply_button = Buttons(frame, '*', lambda: getOperator('*'), row=0, column=4)
 divide_button = Buttons(frame, '÷', lambda: getOperator('/'), row=1, column=4)
 minus_button = Buttons(frame, '-', lambda: getOperator('-'), row=2, column=4)
 plus_button = Buttons(frame, '+', lambda: getOperator('+'), row=3, column=4)
 equals_button = Buttons(frame, '=', equals, row=4, column=4)
-
+clear_button = Buttons(frame, 'CE', clearAll, row=0, column=3)
 
 for index, i in enumerate(NUMBERS):
     digit_button = Buttons(frame, f'{index}', command= lambda x=index: getNum(x), row=i[0], column=i[1])
