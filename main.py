@@ -1,5 +1,16 @@
 import customtkinter as ctk
 from buttons import Buttons
+from tkinter import *
+
+
+NUMBERS = [
+    [4, 2], 
+    [3, 1], [3, 2], [3, 3],
+    [2, 1], [2, 2], [2, 3],
+    [1, 1], [1, 2], [1, 3],
+
+
+]
 
 # init the GUI
 app = ctk.CTk()
@@ -28,22 +39,26 @@ dark_or_light = ctk.CTkSwitch(app,
 dark_or_light.pack()
 
 
-# canvas for the calculator buttons and entry
-frame = ctk.CTkFrame(app, width=350, height=500)
+# canvas for the calculator buttons
+frame = ctk.CTkFrame(app, width=350, height=600)
 frame.pack()
 
-# create entry
-num = ctk.CTkEntry(frame, width=300, height=100, font=('Arial', 40), placeholder_text=0, justify='right')
-app.after(1, lambda: num.focus())
-num.grid(row=0, column=0, columnspan=1)
 
-multiply_button = Buttons(frame, 'x', "pass", row=1, column=1)
-divide_button = Buttons(frame, '÷', "pass", row=2, column=1)
-minus_button = Buttons(frame, '-', 'pass', row=3, column=1)
-plus_button = Buttons(frame, '+', "pass", row=4, column=1)
-equals_button = Buttons(frame, '=', "pass", row=5, column=1)
+expression = ''
+def getNum(num):
+    global expression
+    expression += str(num)
+    print(expression)
 
 
+multiply_button = Buttons(frame, '*', lambda: calculate(entry_num.get(), '*'), row=0, column=4)
+divide_button = Buttons(frame, '÷', lambda: calculate(entry_num.get(), '/'), row=1, column=4)
+minus_button = Buttons(frame, '-', lambda: calculate(entry_num.get(), '-'), row=2, column=4)
+plus_button = Buttons(frame, '+', lambda: calculate(entry_num.get(), '+'), row=3, column=4)
+equals_button = Buttons(frame, '=', lambda: equals(entry_num.get()), row=4, column=4)
+
+for index, i in enumerate(NUMBERS):
+    digit_button = Buttons(frame, f'{index}', command= lambda x=index: getNum(x), row=i[0], column=i[1])
 
 
 
